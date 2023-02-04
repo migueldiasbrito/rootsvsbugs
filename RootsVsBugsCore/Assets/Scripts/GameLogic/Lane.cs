@@ -39,6 +39,19 @@ public class Lane : MonoBehaviour
         }
     }
 
+    public void AddPlantToSlot(Player player, Plant plantPrefab, int slot)
+    {
+        LaneSlot laneSlot = slots[slot];
+        if (laneSlot.State != LaneSlot.LaneSlotState.Free) return;
+
+        if (player.Resources >= plantPrefab.cost)
+        {
+            laneSlot.State = LaneSlot.LaneSlotState.Occupied;
+            Instantiate(plantPrefab, laneSlot.plantRoot);
+            player.Resources -= plantPrefab.cost;
+        }
+    }
+
     public void SetEnemySettings(EnemySettings enemySettings)
     {
         this.enemySettings = enemySettings;

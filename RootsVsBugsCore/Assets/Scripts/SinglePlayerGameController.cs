@@ -61,7 +61,8 @@ public class SinglePlayerGameController : GameController
             LaneSlot laneSlot = hit.collider.GetComponent<LaneSlot>();
             if (laneSlot != null)
             {
-                AddPlantToLaneSlot(player, selectedPlantSelected.plantPrefab, laneSlot);
+                Lane lane = laneSlot.GetComponentInParent<Lane>();
+                AddPlantToLaneSlot(player, selectedPlantSelected.plantPrefab, lane, laneSlot);
             }
 
             if (player.Resources < selectedPlantSelected.plantPrefab.cost)
