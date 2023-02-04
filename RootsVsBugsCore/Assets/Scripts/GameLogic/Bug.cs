@@ -16,6 +16,8 @@ public class Bug : MonoBehaviour
             Vector3 position = transform.position;
             position.x += speed * Time.deltaTime;
             transform.position = position;
+
+            baseEntity.UpdateHealthBarPosition();
         }
     }
 

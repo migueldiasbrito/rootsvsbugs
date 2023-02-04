@@ -10,6 +10,9 @@ public class SinglePlayerGameController : GameController
     private PlantSelector selectedPlantSelected = null;
     public Player player;
 
+    public Camera sceneCamera;
+    public Transform HealthBarsHolder;
+
     private void Start()
     {
         foreach(PlantSelector plantSelector in plantSelectors)
@@ -19,6 +22,7 @@ public class SinglePlayerGameController : GameController
 
         foreach (Lane lane in lanes)
         {
+            lane.SetUiOptions(sceneCamera, HealthBarsHolder);
             lane.SetEnemySettings(enemySettings);
         }
     }

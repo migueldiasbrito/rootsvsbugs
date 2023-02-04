@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,11 @@ public class BaseEntity : MonoBehaviour
     public int totalHealth;
     public int attack;
     public float recoil;
+
+    public HealthDisplayView healthDisplayViewPrefab;
+    public Transform healthDisplayHolder;
+    private HealthDisplayView healthDisplayView;
+    private Camera sceneCamera;
 
     private int currentHealth;
 
@@ -48,7 +54,12 @@ public class BaseEntity : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            Destroy(healthDisplayView.gameObject);
             Destroy(gameObject);
+        }
+        else
+        {
+            healthDisplayView.UpdateHealthBar(currentHealth, totalHealth);
         }
     }
 
@@ -56,11 +67,25 @@ public class BaseEntity : MonoBehaviour
     {
         while (true)
         {
-            if (entitiesToAttack.Count < 0) continue;
+            foreach (BaseEntity entity in entitiesToAttack)
+            {
+                if (entity == null) continue;
 
-            entitiesToAttack[0].TakeDamage(attack);
-
-            yield return new WaitForSeconds(recoil);
+                entity.TakeDamage(attack);
+                yield return new WaitForSeconds(recoil);
+            }
         }
+    }
+
+    public void SetUiOptions(Camera sceneCamera, Transform healthBarsHolder)
+    {
+        this.sceneCamera = sceneCamera;
+        healthDisplayView = Instantiate(healthDisplayViewPrefab, healthBarsHolder);
+        UpdateHealthBarPosition();
+    }
+
+    public void UpdateHealthBarPosition()
+    {
+        healthDisplayView.transform.position = sceneCamera.WorldToScreenPoint(healthDisplayHolder.position);
     }
 }

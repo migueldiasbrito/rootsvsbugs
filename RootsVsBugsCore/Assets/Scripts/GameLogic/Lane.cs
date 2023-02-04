@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class Lane : MonoBehaviour
 
     private EnemySettings enemySettings;
     private Coroutine enemySpawnRoutine;
+
+    private Camera sceneCamera;
+    private Transform healthBarsHolder;
 
     private void Update()
     {
@@ -39,6 +43,12 @@ public class Lane : MonoBehaviour
         }
     }
 
+    public void SetUiOptions(Camera camera, Transform healthBarsHolder)
+    {
+        sceneCamera = camera;
+        this.healthBarsHolder = healthBarsHolder;
+    }
+
     public void AddPlantToSlot(Player player, Plant plantPrefab, int slot)
     {
         LaneSlot laneSlot = slots[slot];
@@ -47,7 +57,8 @@ public class Lane : MonoBehaviour
         if (player.Resources >= plantPrefab.cost)
         {
             laneSlot.State = LaneSlot.LaneSlotState.Occupied;
-            Instantiate(plantPrefab, laneSlot.plantRoot);
+            Plant newPlant = Instantiate(plantPrefab, laneSlot.plantRoot);
+            newPlant.baseEntity.SetUiOptions(sceneCamera, healthBarsHolder);
             player.Resources -= plantPrefab.cost;
         }
     }
@@ -69,7 +80,8 @@ public class Lane : MonoBehaviour
             float waitTimeToNextBug = enemySettings.GetNextBugWaitTime();
 
             yield return new WaitForSeconds(waitTimeToNextBug);
-            Instantiate(bug, enemySpawnPoint);
+            Bug newBug = Instantiate(bug, enemySpawnPoint);
+            newBug.baseEntity.SetUiOptions(sceneCamera, healthBarsHolder);
         }
     }
 }
