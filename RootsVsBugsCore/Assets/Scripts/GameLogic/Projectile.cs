@@ -7,6 +7,12 @@ public class Projectile : MonoBehaviour
     public int attack;
     public int speed;
     public int maxEnemiesHit;
+    public float timeToLive = 5;
+
+    private void Start()
+    {
+        StartCoroutine(TimeToLive());
+    }
 
     private void Update()
     {
@@ -25,5 +31,11 @@ public class Projectile : MonoBehaviour
         maxEnemiesHit--;
 
         if (maxEnemiesHit <= 0) Destroy(gameObject);
+    }
+
+    private IEnumerator TimeToLive()
+    {
+        yield return new WaitForSeconds(timeToLive);
+        Destroy(gameObject);
     }
 }
