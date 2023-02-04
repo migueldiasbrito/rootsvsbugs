@@ -11,7 +11,6 @@ public class ProtoLaneSlotView : MonoBehaviour
         public Color color;
     }
 
-    public LaneSlot laneSlot;
     public SpriteRenderer spriteRenderer;
     public List<ProtoLaneSlotViewOptions> protoLaneSlotViewOptions;
 
