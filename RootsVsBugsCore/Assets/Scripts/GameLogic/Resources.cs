@@ -58,4 +58,14 @@ public class Resources
             Seeds = a.Seeds - b.Seeds 
         };
     }
+
+    public static Resources operator +(Resources a, Resources b)
+    {
+        return new Resources
+        {
+            Water = a.Water + b.Water,
+            Minerals = a.Minerals + b.Minerals,
+            Seeds = a.Seeds + b.Seeds
+        };
+    }
 }

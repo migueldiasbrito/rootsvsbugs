@@ -50,6 +50,7 @@ MonoBehaviour:
   attack: 5
   speed: 1
   maxEnemiesHit: 3
+  timeToLive: 15
 --- !u!212 &7714709963782662776
 SpriteRenderer:
   m_ObjectHideFlags: 0
