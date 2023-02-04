@@ -1718,10 +1718,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5149885905870090602, guid: 502919d63aafeb5459371f9f63b8bac4, type: 3}
-      propertyPath: timeToUnlockSlot
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

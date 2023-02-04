@@ -15,6 +15,11 @@ public class Resources
                Minerals == resources.Minerals;
     }
 
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
     public static bool operator ==(Resources a, Resources b)
     {
         return a.Water == b.Water && a.Seeds == b.Seeds && a.Minerals == b.Minerals;

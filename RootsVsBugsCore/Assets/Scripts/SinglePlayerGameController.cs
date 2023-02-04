@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour
+public class SinglePlayerGameController : GameController
 {
     public List<PlantSelector> plantSelectors;
     private PlantSelector selectedPlantSelected = null;
@@ -58,18 +58,12 @@ public class GameController : MonoBehaviour
             {
                 AddPlantToLaneSlot(player, selectedPlantSelected.plantPrefab, laneSlot);
             }
-        }
-    }
 
-    private void AddPlantToLaneSlot(Player player, Plant plantPrefab, LaneSlot laneSlot)
-    {
-        if (laneSlot.State != LaneSlot.LaneSlotState.Free) return;
-
-        if (player.Resources >= plantPrefab.cost)
-        {
-            laneSlot.State = LaneSlot.LaneSlotState.Occupied;
-            Instantiate(plantPrefab, laneSlot.plantRoot);
-            player.Resources -= plantPrefab.cost;
+            if (player.Resources < selectedPlantSelected.plantPrefab.cost)
+            {
+                selectedPlantSelected.Selected = false;
+                selectedPlantSelected = null;
+            }
         }
     }
 }
