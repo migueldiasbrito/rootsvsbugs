@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int attack;
+    public int speed;
+    public int maxEnemiesHit;
+
+    private void Update()
     {
-        
+        Vector3 position = transform.position;
+        position.x += speed * Time.deltaTime;
+        transform.position = position;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        Bug bug = collision.gameObject.GetComponent<Bug>();
+
+        if (bug == null) return;
+
+        bug.baseEntity.TakeDamage(attack);
+        maxEnemiesHit--;
+
+        if (maxEnemiesHit <= 0) Destroy(gameObject);
     }
 }

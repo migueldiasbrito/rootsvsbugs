@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Slots
+    uniqueID: 1877925091
+    locked: 0
+  - name: Entities
+    uniqueID: 3102013175
+    locked: 0
+  - name: Projectiles
+    uniqueID: 1665357307
+    locked: 0
