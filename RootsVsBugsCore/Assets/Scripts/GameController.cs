@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
 {
     public List<PlantSelector> plantSelectors;
     private PlantSelector selectedPlantSelected = null;
+    public Player player;
 
     private void Start()
     {
@@ -34,8 +35,11 @@ public class GameController : MonoBehaviour
             selectedPlantSelected.Selected = false;
         }
 
-        selectedPlantSelected = plantSelector;
-        selectedPlantSelected.Selected = true;
+        if (player.Resources >= plantSelector.plantPrefab.cost)
+        {
+            selectedPlantSelected = plantSelector;
+            selectedPlantSelected.Selected = true;
+        }
     }
 
     public void ReadMouse()
@@ -52,15 +56,20 @@ public class GameController : MonoBehaviour
             LaneSlot laneSlot = hit.collider.GetComponent<LaneSlot>();
             if (laneSlot != null)
             {
-                AddPlantToLaneSlot(selectedPlantSelected.plantPrefab, laneSlot);
+                AddPlantToLaneSlot(player, selectedPlantSelected.plantPrefab, laneSlot);
             }
         }
     }
 
-    private void AddPlantToLaneSlot(Plant plantPrefab, LaneSlot laneSlot)
+    private void AddPlantToLaneSlot(Player player, Plant plantPrefab, LaneSlot laneSlot)
     {
         if (laneSlot.State != LaneSlot.LaneSlotState.Free) return;
-        laneSlot.State = LaneSlot.LaneSlotState.Occupied;
-        Instantiate(plantPrefab, laneSlot.plantRoot);
+
+        if (player.Resources >= plantPrefab.cost)
+        {
+            laneSlot.State = LaneSlot.LaneSlotState.Occupied;
+            Instantiate(plantPrefab, laneSlot.plantRoot);
+            player.Resources -= plantPrefab.cost;
+        }
     }
 }
