@@ -553,6 +553,7 @@ GameObject:
   - component: {fileID: 330860522}
   - component: {fileID: 330860521}
   - component: {fileID: 330860523}
+  - component: {fileID: 330860524}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -572,6 +573,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61edb7b0dde5679479345bb7b5c11957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lanes:
+  - {fileID: 1116226864}
+  enemySettings: {fileID: 330860524}
   plantSelectors:
   - {fileID: 1836247318}
   - {fileID: 584674530}
@@ -623,6 +627,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &330860524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330860520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17f3546201559845a204b3ba45b7048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnEnemySettings:
+  - enemy: {fileID: 4098784470230340035, guid: 18a3804e7b7973649832890c8ca58ad8, type: 3}
+    factor: 100
+  minSpawnTime: 5
+  maxSpawnTime: 10
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,6 +1126,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984401784}
   m_CullTransparentMesh: 1
+--- !u!114 &1116226864 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5149885905870090602, guid: 502919d63aafeb5459371f9f63b8bac4, type: 3}
+  m_PrefabInstance: {fileID: 3180504579131068371}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ca524ea8313574f9e0072c6dea3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1135487106
 GameObject:
   m_ObjectHideFlags: 0

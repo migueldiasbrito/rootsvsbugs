@@ -16,6 +16,11 @@ public class SinglePlayerGameController : GameController
         {
             plantSelector.OnClicked += PlantSelectorSelected;
         }
+
+        foreach (Lane lane in lanes)
+        {
+            lane.SetEnemySettings(enemySettings);
+        }
     }
 
     private void Update()
