@@ -8,6 +8,7 @@ public class BaseEntity : MonoBehaviour
     public int totalHealth;
     public int attack;
     public float recoil;
+    public Action Died;
 
     public HealthDisplayView healthDisplayViewPrefab;
     public Transform healthDisplayHolder;
@@ -23,6 +24,14 @@ public class BaseEntity : MonoBehaviour
     private void Start()
     {
         currentHealth = totalHealth;
+    }
+
+    private void OnDestroy()
+    {
+        if (healthDisplayView != null)
+        {
+            Destroy(healthDisplayView.gameObject);
+        }
     }
 
     public void AddEntityToAttack(BaseEntity entity)
@@ -54,7 +63,7 @@ public class BaseEntity : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Destroy(healthDisplayView.gameObject);
+            Died?.Invoke();
             Destroy(gameObject);
         }
         else
@@ -74,6 +83,7 @@ public class BaseEntity : MonoBehaviour
                 entity.TakeDamage(attack);
                 yield return new WaitForSeconds(recoil);
             }
+            yield return new WaitForEndOfFrame();
         }
     }
 

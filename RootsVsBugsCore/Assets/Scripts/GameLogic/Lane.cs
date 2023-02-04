@@ -8,6 +8,7 @@ public class Lane : MonoBehaviour
     public List<LaneSlot> slots;
     public float timeToUnlockSlot = 60;
     public Transform enemySpawnPoint;
+    public TreeRoot treeRoot;
 
     private bool hasLockedSlots = true;
     private float timeToNextSlot = 0;
@@ -18,8 +19,35 @@ public class Lane : MonoBehaviour
     private Camera sceneCamera;
     private Transform healthBarsHolder;
 
+    private bool isDead = false;
+    private List<Bug> bugs = new();
+    private List<Plant> plants = new();
+
+    private void Start()
+    {
+        treeRoot.baseEntity.Died += GameOver;
+    }
+
+    private void GameOver()
+    {
+        isDead = true;
+        StopCoroutine(enemySpawnRoutine);
+        
+        foreach (Bug bug in bugs)
+        {
+            Destroy(bug.gameObject);
+        }
+
+        foreach (Plant plant in plants)
+        {
+            Destroy(plant.gameObject);
+        }
+    }
+
     private void Update()
     {
+        if (isDead) return;
+
         UpdateLockedSlots();
     }
 
@@ -47,6 +75,8 @@ public class Lane : MonoBehaviour
     {
         sceneCamera = camera;
         this.healthBarsHolder = healthBarsHolder;
+
+        treeRoot.baseEntity.SetUiOptions(camera, healthBarsHolder);
     }
 
     public void AddPlantToSlot(Player player, Plant plantPrefab, int slot)
@@ -60,6 +90,9 @@ public class Lane : MonoBehaviour
             Plant newPlant = Instantiate(plantPrefab, laneSlot.plantRoot);
             newPlant.baseEntity.SetUiOptions(sceneCamera, healthBarsHolder);
             player.Resources -= plantPrefab.cost;
+
+            plants.Add(newPlant);
+            newPlant.baseEntity.Died += () => plants.Remove(newPlant);
         }
     }
 
@@ -82,6 +115,9 @@ public class Lane : MonoBehaviour
             yield return new WaitForSeconds(waitTimeToNextBug);
             Bug newBug = Instantiate(bug, enemySpawnPoint);
             newBug.baseEntity.SetUiOptions(sceneCamera, healthBarsHolder);
+            
+            bugs.Add(newBug);
+            newBug.baseEntity.Died += () => bugs.Remove(newBug);
         }
     }
 }

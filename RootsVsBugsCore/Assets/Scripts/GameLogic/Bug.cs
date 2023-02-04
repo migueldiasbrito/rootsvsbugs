@@ -23,11 +23,24 @@ public class Bug : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        BaseEntity otherBaseEntity;
         Plant plant = collision.gameObject.GetComponent<Plant>();
+        TreeRoot treeRoot = collision.gameObject.GetComponent<TreeRoot>();
 
-        if (plant == null) return;
+        if (plant != null)
+        {
+            otherBaseEntity = plant.baseEntity;
+        }
+        else if (treeRoot != null)
+        {
+            otherBaseEntity = treeRoot.baseEntity;
+        }
+        else
+        {
+            return;
+        }
 
-        baseEntity.AddEntityToAttack(plant.baseEntity);
+        baseEntity.AddEntityToAttack(otherBaseEntity);
 
         if (state != State.Attack)
         {
@@ -38,11 +51,24 @@ public class Bug : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        BaseEntity otherBaseEntity;
         Plant plant = collision.gameObject.GetComponent<Plant>();
+        TreeRoot treeRoot = collision.gameObject.GetComponent<TreeRoot>();
 
-        if (plant == null) return;
+        if (plant != null)
+        {
+            otherBaseEntity = plant.baseEntity;
+        }
+        else if (treeRoot != null)
+        {
+            otherBaseEntity = treeRoot.baseEntity;
+        }
+        else
+        {
+            return;
+        }
 
-        baseEntity.RemoveEntityToAttack(plant.baseEntity);
+        baseEntity.RemoveEntityToAttack(otherBaseEntity);
 
         if (baseEntity.EntitiesToAttackCount == 0)
         {
