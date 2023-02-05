@@ -25,6 +25,8 @@ public class Plant : MonoBehaviour
             Instantiate(projectile, transform.position, Quaternion.identity);
             if (fireClip != null)
                 MultiPurposeAudioSource.instance.audioSource.PlayOneShot(fireClip);
+            if (baseEntity.animator != null)
+                baseEntity.animator.SetTrigger("Attack");
         }
     }
 

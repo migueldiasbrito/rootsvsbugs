@@ -23,6 +23,7 @@ public class BaseEntity : MonoBehaviour
     private Coroutine attackCoroutine;
 
     public AudioClip hitClip;
+    public Animator animator;
 
     private void Start()
     {
@@ -88,6 +89,8 @@ public class BaseEntity : MonoBehaviour
 
                 entity.TakeDamage(attack);
                 recoilTime = recoil;
+
+                if (animator != null) animator.SetTrigger("Attack");
 
                 if (!attackMultiple)
                     break;
