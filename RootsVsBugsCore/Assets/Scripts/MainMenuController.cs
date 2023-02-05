@@ -9,7 +9,11 @@ public class MainMenuController : MonoBehaviour
     public GameObject MainMenu;
     public GameObject EndScreen;
     public TMP_Text endScreenText;
+
     public RectTransform exitCreditsButton;
+    public RectTransform speedUpCreditsButton;
+    public Animator creditsAnimator;
+    private int exitCreditsCounter;
 
     public GameObject Credits;
 
@@ -64,15 +68,30 @@ public class MainMenuController : MonoBehaviour
         {
             canExitCredits = false;
             Credits.SetActive(false);
+
+            exitCreditsCounter = 0;
+            speedUpCreditsButton.gameObject.SetActive(false);
+            creditsAnimator.speed = 1;
         }
         else
         {
             exitCreditsButton.position = new Vector3(Random.Range(100f, 1820f), Random.Range(100f, 980f));
+            exitCreditsCounter++;
+            if (exitCreditsCounter >= 3 && creditsAnimator.speed == 1)
+            {
+                speedUpCreditsButton.gameObject.SetActive(true);
+            }
         }
     }
 
     public void CanExitCredits()
     {
         canExitCredits = true;
+    }
+
+    public void SpeedUpCredits()
+    {
+        creditsAnimator.speed = 0.5f;
+        speedUpCreditsButton.gameObject.SetActive(false);
     }
 }
