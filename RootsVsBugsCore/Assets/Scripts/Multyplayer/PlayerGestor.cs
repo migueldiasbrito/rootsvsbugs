@@ -64,11 +64,24 @@ public class PlayerGestor : MonoBehaviour
 
             if(mensagemRawRaw.Substring(0, 1) == "L")
             {
+                if(myLane != null)
+                {
+                    myLane.GameOver();
+                    myLane.gameObject.SetActive(false);
+                    Destroy(myLane);
 
-                myLane.GameOver();
-               myLane.gameObject.SetActive(false);
-                Destroy(myLane);
+                }
+          
             }
+
+            if (mensagemRawRaw.Substring(0, 1) == "W")
+            {
+                string waterToAdd = mensagemRawRaw.Split(";")[1];
+                int waterInt = int.Parse(waterToAdd);
+
+                myPlayer.Resources.Minerals = waterInt;
+            }
+
 
         }
 
