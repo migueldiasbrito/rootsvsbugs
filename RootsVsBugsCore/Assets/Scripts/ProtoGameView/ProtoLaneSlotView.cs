@@ -8,6 +8,7 @@ public class ProtoLaneSlotView : MonoBehaviour
     public class ProtoLaneSlotViewOptions
     {
         public LaneSlot.LaneSlotState state;
+        public Sprite sprite;
         public Color color;
     }
 
@@ -20,6 +21,7 @@ public class ProtoLaneSlotView : MonoBehaviour
         {
             if (option.state != state) continue;
 
+            spriteRenderer.sprite = option.sprite;
             spriteRenderer.color = option.color;
             break;
         }

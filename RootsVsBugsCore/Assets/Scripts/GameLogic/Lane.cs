@@ -44,6 +44,11 @@ public class Lane : MonoBehaviour
             Destroy(plant.gameObject);
         }
 
+        foreach(LaneSlot slot in slots)
+        {
+            slot.State = LaneSlot.LaneSlotState.Dead;
+        }
+
         LaneDied?.Invoke();
     }
 
@@ -95,7 +100,10 @@ public class Lane : MonoBehaviour
             player.Resources -= plantPrefab.cost;
 
             plants.Add(newPlant);
-            newPlant.baseEntity.Died += () => plants.Remove(newPlant);
+            newPlant.baseEntity.Died += () => {
+                laneSlot.State = LaneSlot.LaneSlotState.Free;
+                plants.Remove(newPlant);
+            };
         }
     }
 

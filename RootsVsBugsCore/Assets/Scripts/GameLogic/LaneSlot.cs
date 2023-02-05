@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class LaneSlot : MonoBehaviour
 {
-    public enum LaneSlotState { Locked, Free, Occupied }
+    public enum LaneSlotState { Locked, Free, Occupied, Dead }
 
     private LaneSlotState _state = LaneSlotState.Locked;
     public UnityEvent<LaneSlotState> slotStateUpdated;
