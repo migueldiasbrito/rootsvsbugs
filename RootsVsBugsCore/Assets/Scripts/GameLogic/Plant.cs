@@ -8,6 +8,7 @@ public class Plant : MonoBehaviour
     public Resources cost;
     public BaseEntity baseEntity;
     public Projectile projectile;
+    public AudioClip fireClip;
 
     private void Start()
     {
@@ -22,6 +23,8 @@ public class Plant : MonoBehaviour
         {
             yield return new WaitForSeconds(baseEntity.recoil);
             Instantiate(projectile, transform.position, Quaternion.identity);
+            if (fireClip != null)
+                MultiPurposeAudioSource.instance.audioSource.PlayOneShot(fireClip);
         }
     }
 

@@ -55,6 +55,7 @@ MonoBehaviour:
     Minerals: 2
   baseEntity: {fileID: -9001382111033811835}
   projectile: {fileID: 4545410680873491727, guid: 5950a299e493a334b9a448f53f2e3dce, type: 3}
+  fireClip: {fileID: 8300000, guid: 9ec4e2dbff7c77144accb013361da3bf, type: 3}
 --- !u!212 &2319860634346514315
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -122,8 +123,10 @@ MonoBehaviour:
   totalHealth: 10
   attack: 0
   recoil: 1
+  attackMultiple: 0
   healthDisplayViewPrefab: {fileID: 7261083533007516442, guid: 3b09c50a000ada041b9cdc74c2c283de, type: 3}
   healthDisplayHolder: {fileID: 2252871536616622223}
+  hitClip: {fileID: 8300000, guid: ee7681bc23630d443ab8f85ea61248d7, type: 3}
 --- !u!61 &3492052095296533235
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -22,6 +22,8 @@ public class BaseEntity : MonoBehaviour
     public int EntitiesToAttackCount => entitiesToAttack.Count;
     private Coroutine attackCoroutine;
 
+    public AudioClip hitClip;
+
     private void Start()
     {
         currentHealth = totalHealth;
@@ -60,6 +62,7 @@ public class BaseEntity : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        MultiPurposeAudioSource.instance.audioSource.PlayOneShot(hitClip);
         currentHealth -= damage;
 
         if (currentHealth <= 0)
@@ -78,7 +81,8 @@ public class BaseEntity : MonoBehaviour
         while (true)
         {
             float recoilTime = 0;
-            foreach (BaseEntity entity in entitiesToAttack)
+            BaseEntity[] copiedList = entitiesToAttack.ToArray();
+            foreach (BaseEntity entity in copiedList)
             {
                 if (entity == null) continue;
 
