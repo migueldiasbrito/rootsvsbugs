@@ -2807,7 +2807,7 @@ MonoBehaviour:
   Credits: {fileID: 964519947}
   multiPurposeAudioSource: {fileID: 621361855}
   victory: {fileID: 8300000, guid: f1f4089c8d75bc045acc3646abf4e37a, type: 3}
-  defeat: {fileID: 8300000, guid: f1f4089c8d75bc045acc3646abf4e37a, type: 3}
+  defeat: {fileID: 8300000, guid: 4c2ae16f9633b1d4db1e81b126a7b19c, type: 3}
 --- !u!4 &1792806024
 Transform:
   m_ObjectHideFlags: 0
