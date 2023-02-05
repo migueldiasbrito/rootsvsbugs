@@ -25,4 +25,9 @@ public class Player : MonoBehaviour
             Resources += new Resources { Seeds = 1 };
         }
     }
+
+    public void AddMinerals()
+    {
+        Resources += new Resources { Minerals = 1 };
+    }
 }

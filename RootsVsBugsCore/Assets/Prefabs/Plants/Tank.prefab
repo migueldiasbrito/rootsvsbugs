@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633e0d7b7bbcf094380452ed335f1877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 10
+  totalHealth: 50
   attack: 1
   recoil: 1
   healthDisplayViewPrefab: {fileID: 7261083533007516442, guid: 3b09c50a000ada041b9cdc74c2c283de, type: 3}

@@ -76,14 +76,16 @@ public class BaseEntity : MonoBehaviour
     {
         while (true)
         {
+            float recoilTime = 0;
             foreach (BaseEntity entity in entitiesToAttack)
             {
                 if (entity == null) continue;
 
                 entity.TakeDamage(attack);
-                yield return new WaitForSeconds(recoil);
+                recoilTime = recoil;
+                break;
             }
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(recoilTime);
         }
     }
 
