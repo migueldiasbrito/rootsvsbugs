@@ -9,6 +9,7 @@ public class BaseEntity : MonoBehaviour
     public int attack;
     public float recoil;
     public Action Died;
+    public bool attackMultiple = false;
 
     public HealthDisplayView healthDisplayViewPrefab;
     public Transform healthDisplayHolder;
@@ -83,7 +84,9 @@ public class BaseEntity : MonoBehaviour
 
                 entity.TakeDamage(attack);
                 recoilTime = recoil;
-                break;
+
+                if (!attackMultiple)
+                    break;
             }
             yield return new WaitForSeconds(recoilTime);
         }

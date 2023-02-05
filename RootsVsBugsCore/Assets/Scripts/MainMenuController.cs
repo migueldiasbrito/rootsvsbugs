@@ -17,6 +17,10 @@ public class MainMenuController : MonoBehaviour
 
     public GameObject Credits;
 
+    public AudioSource multiPurposeAudioSource;
+    public AudioClip victory;
+    public AudioClip defeat;
+
     private bool canExitCredits = false;
 
     private void Start()
@@ -26,16 +30,22 @@ public class MainMenuController : MonoBehaviour
             case 0:
                 MainMenu.SetActive(true);
                 EndScreen.SetActive(false);
+                if (!EverPlayingMusic.instance.audioSource.isPlaying)
+                    EverPlayingMusic.instance.audioSource.Play();
                 break;
             case 1:
                 endScreenText.text = "DEFEAT";
                 MainMenu.SetActive(false);
                 EndScreen.SetActive(true);
+                EverPlayingMusic.instance.audioSource.Stop();
+                multiPurposeAudioSource.PlayOneShot(defeat);
                 break;
             case 2:
                 endScreenText.text = "VICTORY";
                 MainMenu.SetActive(false);
                 EndScreen.SetActive(true);
+                EverPlayingMusic.instance.audioSource.Stop();
+                multiPurposeAudioSource.PlayOneShot(victory);
                 break;
         }
     }
@@ -43,6 +53,8 @@ public class MainMenuController : MonoBehaviour
     public void GoToGameScene()
     {
         MainMenuState = 0;
+        if (!EverPlayingMusic.instance.audioSource.isPlaying)
+            EverPlayingMusic.instance.audioSource.Play();
         SceneManager.LoadScene("SinglePlayerGameScene");
     }
 
