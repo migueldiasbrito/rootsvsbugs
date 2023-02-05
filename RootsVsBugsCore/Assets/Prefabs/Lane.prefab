@@ -135,8 +135,10 @@ MonoBehaviour:
   totalHealth: 20
   attack: 0
   recoil: 0
+  attackMultiple: 0
   healthDisplayViewPrefab: {fileID: 7261083533007516442, guid: 3b09c50a000ada041b9cdc74c2c283de, type: 3}
   healthDisplayHolder: {fileID: 7406455521645569399}
+  hitClip: {fileID: 8300000, guid: ee7681bc23630d443ab8f85ea61248d7, type: 3}
 --- !u!61 &5505406384416281698
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -291,6 +293,7 @@ MonoBehaviour:
   enemySpawnPoint: {fileID: 7596854324195196394}
   treeRoot: {fileID: 5229927860998141240}
   isDead: 0
+  player: {fileID: 0}
 --- !u!1 &7021856095141779689
 GameObject:
   m_ObjectHideFlags: 0
