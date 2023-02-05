@@ -14,7 +14,6 @@ public class MainMenuController : MonoBehaviour
     public RectTransform speedUpCreditsButton;
     public Animator creditsAnimator;
     private int exitCreditsCounter;
-    public AudioSource audioSource;
 
     public GameObject Credits;
 
@@ -73,7 +72,7 @@ public class MainMenuController : MonoBehaviour
             exitCreditsCounter = 0;
             speedUpCreditsButton.gameObject.SetActive(false);
             creditsAnimator.speed = 1;
-            audioSource.pitch = 1;
+            EverPlayingMusic.instance.audioSource.pitch = 1;
         }
         else
         {
@@ -94,7 +93,7 @@ public class MainMenuController : MonoBehaviour
     public void SpeedUpCredits()
     {
         creditsAnimator.speed = 0.5f;
-        audioSource.pitch = 0.5f;
+        EverPlayingMusic.instance.audioSource.pitch = 0.5f;
         speedUpCreditsButton.gameObject.SetActive(false);
     }
 }
