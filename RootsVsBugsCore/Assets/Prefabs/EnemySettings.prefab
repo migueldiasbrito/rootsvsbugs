@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3680275907669138942
 MonoBehaviour:
@@ -48,11 +48,19 @@ MonoBehaviour:
   - spawnEnemySettings:
     - enemy: {fileID: 4098784470230340035, guid: 18a3804e7b7973649832890c8ca58ad8, type: 3}
       factor: 100
+    - enemy: {fileID: 4098784470230340035, guid: 7d015a611a53538418289122e8201cfa, type: 3}
+      factor: 100
+    - enemy: {fileID: 4098784470230340035, guid: fb4d145c4fa46034586e47192738db2d, type: 3}
+      factor: 100
     minSpawnTime: 5
     maxSpawnTime: 10
     waveDuration: 60
   - spawnEnemySettings:
     - enemy: {fileID: 4098784470230340035, guid: 18a3804e7b7973649832890c8ca58ad8, type: 3}
+      factor: 100
+    - enemy: {fileID: 4098784470230340035, guid: 7d015a611a53538418289122e8201cfa, type: 3}
+      factor: 100
+    - enemy: {fileID: 4098784470230340035, guid: fb4d145c4fa46034586e47192738db2d, type: 3}
       factor: 100
     minSpawnTime: 2
     maxSpawnTime: 5
