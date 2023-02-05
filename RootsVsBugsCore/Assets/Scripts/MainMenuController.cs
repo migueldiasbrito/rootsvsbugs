@@ -9,6 +9,11 @@ public class MainMenuController : MonoBehaviour
     public GameObject MainMenu;
     public GameObject EndScreen;
     public TMP_Text endScreenText;
+    public RectTransform exitCreditsButton;
+
+    public GameObject Credits;
+
+    private bool canExitCredits = false;
 
     private void Start()
     {
@@ -46,5 +51,28 @@ public class MainMenuController : MonoBehaviour
     {
         MainMenuState = 0;
         Start();
+    }
+
+    public void OpenCredits()
+    {
+        Credits.SetActive(true);
+    }
+
+    public void TryExitCredits()
+    {
+        if (canExitCredits)
+        {
+            canExitCredits = false;
+            Credits.SetActive(false);
+        }
+        else
+        {
+            exitCreditsButton.position = new Vector3(Random.Range(100f, 1820f), Random.Range(100f, 980f));
+        }
+    }
+
+    public void CanExitCredits()
+    {
+        canExitCredits = true;
     }
 }
