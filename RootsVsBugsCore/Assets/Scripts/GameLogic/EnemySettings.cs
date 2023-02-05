@@ -13,27 +13,54 @@ public class EnemySettings : MonoBehaviour
         public int factor;
     }
 
-    public List<SpawnEnemySettings> spawnEnemySettings;
-    public float minSpawnTime;
-    public float maxSpawnTime;
+    [Serializable]
+    public class WaveSettings
+    {
+        public List<SpawnEnemySettings> spawnEnemySettings;
+        public float minSpawnTime;
+        public float maxSpawnTime;
+        public float waveDuration;
+    }
 
+    public List<WaveSettings> waveSettings;
+
+    private int currentLevel;
     private List<float> normalizedEnemyProbability;
+    private WaveSettings CurrentWaveSetting => waveSettings[currentLevel];
+
 
     private void Awake()
     {
+        LoadWave();
+    }
+
+    private void LoadWave()
+    {
         float enemyFactorSum = 0;
-        foreach (SpawnEnemySettings setting in spawnEnemySettings)
+        foreach (SpawnEnemySettings setting in CurrentWaveSetting.spawnEnemySettings)
         {
             enemyFactorSum += setting.factor;
         }
 
         float cummulativeProbability = 0;
         normalizedEnemyProbability = new();
-        foreach (SpawnEnemySettings setting in spawnEnemySettings)
+        foreach (SpawnEnemySettings setting in CurrentWaveSetting.spawnEnemySettings)
         {
             cummulativeProbability += setting.factor / enemyFactorSum;
             normalizedEnemyProbability.Add(cummulativeProbability);
         }
+
+        if (currentLevel + 1 < waveSettings.Count)
+        {
+            StartCoroutine(LoadNewLevel());
+        }
+    }
+
+    private IEnumerator LoadNewLevel()
+    {
+        yield return new WaitForSeconds(CurrentWaveSetting.waveDuration);
+        currentLevel++;
+        LoadWave();
     }
 
     public Bug GetNextBug()
@@ -44,14 +71,14 @@ public class EnemySettings : MonoBehaviour
         {
             if (normalizedEnemyProbability[i] < rng) continue;
 
-            return spawnEnemySettings[i].enemy;
+            return CurrentWaveSetting.spawnEnemySettings[i].enemy;
         }
 
-        return spawnEnemySettings[^1].enemy;
+        return CurrentWaveSetting.spawnEnemySettings[^1].enemy;
     }
 
     public float GetNextBugWaitTime()
     {
-        return Random.Range(minSpawnTime, maxSpawnTime);
+        return Random.Range(CurrentWaveSetting.minSpawnTime, CurrentWaveSetting.maxSpawnTime);
     }
 }
