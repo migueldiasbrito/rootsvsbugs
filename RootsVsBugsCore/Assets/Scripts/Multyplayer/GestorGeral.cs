@@ -7,6 +7,7 @@ using TMPro;
 using Unity.Collections;
 using Unity.Networking.Transport;
 using Unity.VisualScripting;
+using Unity.XR.Oculus.Input;
 using UnityEngine;
 
 public class GestorGeral : MonoBehaviour
@@ -22,6 +23,11 @@ public class GestorGeral : MonoBehaviour
     public EnemySettings enemySettings;
 
     public TMP_Text IP;
+
+
+    public List<GameObject> posicoes;
+    public List<string> ocupado;
+
     void Start()
     {
 
@@ -30,6 +36,8 @@ public class GestorGeral : MonoBehaviour
         var endpoint = NetworkEndPoint.AnyIpv4; // The local address to which the client will connect to is 127.0.0.1
         endpoint.Port = 9000;
         print(endpoint);
+
+        
 
 
         if (m_Driver.Bind(endpoint) != 0)
@@ -69,7 +77,25 @@ public class GestorGeral : MonoBehaviour
             m_Connections.Add(c);
             GameObject newG = Instantiate(Lane);
             newG.SetActive(true);
-            newG.gameObject.transform.position += new Vector3(0, gameObject.transform.position.y - (1.5f * m_Connections.Length-1), 0);
+
+
+            int pistDisponivel = -1;
+
+
+            foreach (string item in ocupado)
+            {
+                if(item == "VAZIO")
+                {
+                    pistDisponivel = ocupado.IndexOf(item);
+                   
+                    break;
+                }
+            }
+
+            //por na primeira disponivel
+            newG.gameObject.transform.position = posicoes[pistDisponivel].transform.position;
+            ocupado[pistDisponivel] = m_Connections[m_Connections.Length - 1].InternalId.ToString();
+
             newG.GetComponent<PlayerGestor>()._myID = m_Connections[m_Connections.Length-1].InternalId;
             EveryoneListen += newG.GetComponent<PlayerGestor>().LerETratarMsg;
             
@@ -91,7 +117,7 @@ public class GestorGeral : MonoBehaviour
                     Debug.Log("Ele disse me " + msg + " ID="+ m_Connections[i].InternalId);
 
                     EveryoneListen?.Invoke( m_Connections[i].InternalId + "," + msg);
-                    m_Connections[i]=IWishToLogOut(m_Connections[i], msg);
+                    IWishToLogOut(m_Connections[i], msg);
                     // m_Driver.BeginSend(NetworkPipeline.Null, m_Connections[i], out var writer);
                     // writer.WriteUInt(number);
                     // m_Driver.EndSend(writer);
@@ -122,18 +148,32 @@ public class GestorGeral : MonoBehaviour
         Debug.Log("és burro");
     }
 
-    public static NetworkConnection IWishToLogOut(NetworkConnection m, string mensagem)
+    public  void IWishToLogOut(NetworkConnection m, string mensagem)
     {
-        if(mensagem.Substring(0, 1) == "L")
+        print("Mensa"+ mensagem);
+        if (mensagem.Substring(0, 1) == "L")
         {
+            print("LoggerOUT");
             Debug.Log("Client disconnected from server");
-            
-            m = default(NetworkConnection);
-            return m;
-        }
-        else
-        {
-            return m;
+
+            // m = default(NetworkConnection);
+
+            int index = -1;
+
+            foreach (string item in ocupado)
+            {
+                if (item == m.InternalId.ToString())
+                {
+                    index = ocupado.IndexOf(item);
+                    Debug.Log("r");
+                }
+            }
+
+            print("Valor?" + index);
+            if (index != -1)
+            {
+                ocupado[index] = "VAZIO";
+            }
         }
   
     }

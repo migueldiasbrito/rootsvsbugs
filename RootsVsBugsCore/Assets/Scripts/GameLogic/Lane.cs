@@ -31,7 +31,7 @@ public class Lane : MonoBehaviour
         treeRoot.baseEntity.Died += GameOver;
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         isDead = true;
         StopCoroutine(enemySpawnRoutine);

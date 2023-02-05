@@ -64,8 +64,10 @@ public class PlayerGestor : MonoBehaviour
 
             if(mensagemRawRaw.Substring(0, 1) == "L")
             {
-                
-                Destroy(myLane.gameObject);
+
+                myLane.GameOver();
+               myLane.gameObject.SetActive(false);
+                Destroy(myLane);
             }
 
         }
