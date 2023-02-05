@@ -17,6 +17,10 @@ public class MainMenuController : MonoBehaviour
 
     public GameObject Credits;
 
+    public AudioSource multiPurposeAudioSource;
+    public AudioClip victory;
+    public AudioClip defeat;
+
     private bool canExitCredits = false;
 
     private void Start()
@@ -31,11 +35,13 @@ public class MainMenuController : MonoBehaviour
                 endScreenText.text = "DEFEAT";
                 MainMenu.SetActive(false);
                 EndScreen.SetActive(true);
+                multiPurposeAudioSource.PlayOneShot(defeat);
                 break;
             case 2:
                 endScreenText.text = "VICTORY";
                 MainMenu.SetActive(false);
                 EndScreen.SetActive(true);
+                multiPurposeAudioSource.PlayOneShot(victory);
                 break;
         }
     }
