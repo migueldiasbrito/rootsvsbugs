@@ -153,6 +153,7 @@ MonoBehaviour:
   totalHealth: 50
   attack: 1
   recoil: 1
+  attackMultiple: 1
   healthDisplayViewPrefab: {fileID: 7261083533007516442, guid: 3b09c50a000ada041b9cdc74c2c283de, type: 3}
   healthDisplayHolder: {fileID: 5996152823797625502}
 --- !u!61 &5108054074088179801
