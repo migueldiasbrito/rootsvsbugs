@@ -51,6 +51,8 @@ public class Lane : MonoBehaviour
             slot.State = LaneSlot.LaneSlotState.Dead;
         }
 
+        treeRoot.baseEntity.DestoryHealthBar();
+
         LaneDied?.Invoke();
     }
 

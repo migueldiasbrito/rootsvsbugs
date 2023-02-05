@@ -100,4 +100,9 @@ public class BaseEntity : MonoBehaviour
     {
         healthDisplayView.transform.position = sceneCamera.WorldToScreenPoint(healthDisplayHolder.position);
     }
+
+    public void DestoryHealthBar()
+    {
+        Destroy(healthDisplayView.gameObject);
+    }
 }
