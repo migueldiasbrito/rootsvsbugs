@@ -101,6 +101,8 @@ public class GestorGeral : MonoBehaviour
             
             newG.GetComponent<Lane>().SetUiOptions(camera,helthBarHolder);
             newG.GetComponent<Lane>().SetEnemySettings(enemySettings);
+
+
             Debug.Log("Accepted a connection");
         }
 
@@ -185,4 +187,6 @@ public class GestorGeral : MonoBehaviour
                 f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
             .ToString();
     }
+
+
 }
