@@ -24,6 +24,8 @@ public class Lane : MonoBehaviour
     private List<Plant> plants = new();
     public Action LaneDied;
 
+    public Player player;
+
     private void Start()
     {
         treeRoot.baseEntity.Died += GameOver;
@@ -87,7 +89,7 @@ public class Lane : MonoBehaviour
         treeRoot.baseEntity.SetUiOptions(camera, healthBarsHolder);
     }
 
-    public void AddPlantToSlot(Player player, Plant plantPrefab, int slot)
+    public void AddPlantToSlot(Plant plantPrefab, int slot)
     {
         LaneSlot laneSlot = slots[slot];
         if (laneSlot.State != LaneSlot.LaneSlotState.Free) return;
@@ -128,7 +130,11 @@ public class Lane : MonoBehaviour
             newBug.baseEntity.SetUiOptions(sceneCamera, healthBarsHolder);
             
             bugs.Add(newBug);
-            newBug.baseEntity.Died += () => bugs.Remove(newBug);
+            newBug.baseEntity.Died += () =>
+            {
+                player.Resources += new Resources { Water = newBug.waterGivenWhenDead };
+                bugs.Remove(newBug);
+            };
         }
     }
 }

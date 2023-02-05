@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 157503742979887489, guid: 502919d63aafeb5459371f9f63b8bac4, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 157503742979887489, guid: 502919d63aafeb5459371f9f63b8bac4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54,12 +54,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1270502398256390056, guid: 502919d63aafeb5459371f9f63b8bac4, type: 3}
       propertyPath: m_Name
-      value: Lane
+      value: Lane Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1270502398256390056, guid: 502919d63aafeb5459371f9f63b8bac4, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5149885905870090602, guid: 502919d63aafeb5459371f9f63b8bac4, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1353099150}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -113,6 +117,7 @@ MonoBehaviour:
   resourcesUpdated:
     m_PersistentCalls:
       m_Calls: []
+  seedIncrease: 5
 --- !u!114 &7056217109202850557 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5149885905870090602, guid: 502919d63aafeb5459371f9f63b8bac4, type: 3}

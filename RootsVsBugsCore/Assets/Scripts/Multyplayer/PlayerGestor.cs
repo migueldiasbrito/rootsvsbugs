@@ -49,7 +49,7 @@ public class PlayerGestor : MonoBehaviour
 
                 myPlayer.Resources.Minerals = int.Parse(suns);
                 print(myPlayer.Resources.Minerals);
-                myLane.AddPlantToSlot(myPlayer, myPlants[int.Parse(plantaM)], int.Parse(laneM));
+                myLane.AddPlantToSlot(myPlants[int.Parse(plantaM)], int.Parse(laneM));
 
             }
             //Enviar

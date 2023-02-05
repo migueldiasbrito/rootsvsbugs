@@ -1,10 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bug : MonoBehaviour
 {
     public BaseEntity baseEntity;
     public float speed;
+    public int waterGivenWhenDead;
 
     private enum State { Run, Attack}
     private State state = State.Run;

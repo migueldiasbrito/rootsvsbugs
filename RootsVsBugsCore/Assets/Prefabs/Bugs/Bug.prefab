@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseEntity: {fileID: 1345081067924775727}
   speed: -0.5
+  waterGivenWhenDead: 2
 --- !u!212 &886436884077412527
 SpriteRenderer:
   m_ObjectHideFlags: 0
