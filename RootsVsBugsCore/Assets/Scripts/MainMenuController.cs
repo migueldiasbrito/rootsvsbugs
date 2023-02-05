@@ -108,4 +108,10 @@ public class MainMenuController : MonoBehaviour
         EverPlayingMusic.instance.audioSource.pitch = 0.5f;
         speedUpCreditsButton.gameObject.SetActive(false);
     }
+
+
+    public void goToMultyplayer()
+    {
+        SceneManager.LoadScene("Muyltyplayer", LoadSceneMode.Single);
+    }
 }
