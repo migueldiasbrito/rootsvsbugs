@@ -1,15 +1,50 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+    public static int MainMenuState = 0;
+
+    public GameObject MainMenu;
+    public GameObject EndScreen;
+    public TMP_Text endScreenText;
+
+    private void Start()
+    {
+        switch (MainMenuState)
+        {
+            case 0:
+                MainMenu.SetActive(true);
+                EndScreen.SetActive(false);
+                break;
+            case 1:
+                endScreenText.text = "DEFEAT";
+                MainMenu.SetActive(false);
+                EndScreen.SetActive(true);
+                break;
+            case 2:
+                endScreenText.text = "VICTORY";
+                MainMenu.SetActive(false);
+                EndScreen.SetActive(true);
+                break;
+        }
+    }
+
     public void GoToGameScene()
     {
+        MainMenuState = 0;
         SceneManager.LoadScene("SinglePlayerGameScene");
     }
 
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void GoToMainMenu()
+    {
+        MainMenuState = 0;
+        Start();
     }
 }

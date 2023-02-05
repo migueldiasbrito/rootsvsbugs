@@ -36,7 +36,8 @@ public class SinglePlayerGameController : GameController
             if (!lane.isDead) continue;
         }
 
-        SceneManager.LoadScene("Defeat");
+        MainMenuController.MainMenuState = 1;
+        GoToMainMenu();
     }
 
     private void Update()

@@ -19,7 +19,8 @@ public class ProtoTreeView : MonoBehaviour
 
         if (currentTime >= timeToWin)
         {
-            SceneManager.LoadScene("Victory");
+            MainMenuController.MainMenuState = 2;
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
