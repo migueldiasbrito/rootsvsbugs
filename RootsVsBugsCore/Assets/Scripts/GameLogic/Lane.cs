@@ -19,9 +19,10 @@ public class Lane : MonoBehaviour
     private Camera sceneCamera;
     private Transform healthBarsHolder;
 
-    private bool isDead = false;
+    public bool isDead = false;
     private List<Bug> bugs = new();
     private List<Plant> plants = new();
+    public Action LaneDied;
 
     private void Start()
     {
@@ -42,6 +43,8 @@ public class Lane : MonoBehaviour
         {
             Destroy(plant.gameObject);
         }
+
+        LaneDied?.Invoke();
     }
 
     private void Update()

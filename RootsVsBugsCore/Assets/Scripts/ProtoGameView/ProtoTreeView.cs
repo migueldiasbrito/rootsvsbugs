@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ProtoTreeView : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class ProtoTreeView : MonoBehaviour
         sizeDelta.y = 100 + 980 * currentTime / timeToWin;
         tree.sizeDelta = sizeDelta;
 
-        //if (currentTime >= timeToWin) Debug.Log("Ganhou");
+        if (currentTime >= timeToWin)
+        {
+            SceneManager.LoadScene("Victory");
+        }
     }
 }

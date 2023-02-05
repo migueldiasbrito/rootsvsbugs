@@ -24,7 +24,19 @@ public class SinglePlayerGameController : GameController
         {
             lane.SetUiOptions(sceneCamera, HealthBarsHolder);
             lane.SetEnemySettings(enemySettings);
+
+            lane.LaneDied += LaneDied;
         }
+    }
+
+    private void LaneDied()
+    {
+        foreach (Lane lane in lanes)
+        {
+            if (!lane.isDead) continue;
+        }
+
+        SceneManager.LoadScene("Defeat");
     }
 
     private void Update()
