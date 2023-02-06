@@ -50,12 +50,27 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
-    public void GoToGameScene()
+    public void PlayEasy()
+    {
+        GoToGameScene("EasyPlayerGameScene");
+    }
+
+    public void PlayNormal()
+    {
+        GoToGameScene("NormalPlayerGameScene");
+    }
+
+    public void PlayHard()
+    {
+        GoToGameScene("HardPlayerGameScene");
+    }
+
+    private void GoToGameScene(string sceneName)
     {
         MainMenuState = 0;
         if (!EverPlayingMusic.instance.audioSource.isPlaying)
             EverPlayingMusic.instance.audioSource.Play();
-        SceneManager.LoadScene("SinglePlayerGameScene");
+        SceneManager.LoadScene(sceneName);
     }
 
     public void ExitGame()

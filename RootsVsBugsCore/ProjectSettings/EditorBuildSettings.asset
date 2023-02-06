@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 547401abc0d87cb429e471d666782526
   - enabled: 1
-    path: Assets/Scenes/SinglePlayerGameScene.unity
+    path: Assets/Scenes/EasyPlayerGameScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Victory.unity
@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Muyltyplayer.unity
     guid: 39b60cb7a2fc80a498c6d364f39ac814
+  - enabled: 1
+    path: Assets/Scenes/HardPlayerGameScene.unity
+    guid: 46f08925c36d2b1438a7bb0e0ff21264
+  - enabled: 1
+    path: Assets/Scenes/NormalPlayerGameScene.unity
+    guid: 490a3bcbcf41bf84e97d8274a716541a
   m_configObjects: {}

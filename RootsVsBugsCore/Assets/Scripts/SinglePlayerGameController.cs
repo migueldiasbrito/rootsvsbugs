@@ -13,9 +13,13 @@ public class SinglePlayerGameController : GameController
     public Camera sceneCamera;
     public Transform HealthBarsHolder;
 
+    private int layerMask;
+
     private void Start()
     {
-        foreach(PlantSelector plantSelector in plantSelectors)
+        layerMask = LayerMask.GetMask("Root");
+        Debug.Log(layerMask);
+        foreach (PlantSelector plantSelector in plantSelectors)
         {
             plantSelector.OnClicked += PlantSelectorSelected;
         }
@@ -70,7 +74,7 @@ public class SinglePlayerGameController : GameController
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 ray = mousePosition;
-        RaycastHit2D hit = Physics2D.Raycast(ray, Vector2.zero, 0f);
+        RaycastHit2D hit = Physics2D.Raycast(ray, Vector2.zero, 0f, layerMask);
 
         
         if (hit)
