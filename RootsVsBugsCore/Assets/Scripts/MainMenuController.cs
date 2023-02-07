@@ -103,7 +103,9 @@ public class MainMenuController : MonoBehaviour
         }
         else
         {
-            exitCreditsButton.position = new Vector3(Random.Range(100f, 1820f), Random.Range(100f, 980f));
+            exitCreditsButton.position =
+                new Vector3(Random.Range(100f, Screen.width - 100f), Random.Range(100f, Screen.height - 100f));
+            Debug.Log(exitCreditsButton.localPosition);
             exitCreditsCounter++;
             if (exitCreditsCounter >= 3 && creditsAnimator.speed == 1)
             {
